@@ -1,8 +1,10 @@
 'use strict';
-angular.module('tlogApp', ['ngResource'])
-  .controller('PostsCtrl', function ($scope, $resource) {
-        var posts  = $resource('/api/posts/');
+angular.module('tlogApp')
+  .controller('PostsCtrl', function ($scope,  Post) {
+        Post.query(function (result) {
+        $scope.posts = result;
+    }, function (error) {
+      console.log(error);
+    });
         
-       
-    $scope.posts = posts;
   });

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('tlogApp')
+/*angular.module('tlogApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('posts', {
@@ -9,3 +9,4 @@ angular.module('tlogApp')
         controller: 'PostsCtrl'
       });
   });
+  */
