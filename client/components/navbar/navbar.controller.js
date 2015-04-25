@@ -5,7 +5,9 @@ angular.module('tlogApp')
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
+
     }, {
+
       'title': 'Posts',
       'link': '/posts'
     }];
