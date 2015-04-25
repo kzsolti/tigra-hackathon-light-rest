@@ -5,7 +5,8 @@ var controller = require('./authorization.controller');
 
 var router = express.Router();
 
-router.get('/:username/users/:ausername/:function', controller.check);
+router.get('/:username/users/:ausername/:function', controller.checkUserRelated);
+router.get('/:username/posts/:function', controller.checkPostRelated);
 
 /*
 router.get('/:id', controller.show);

@@ -3,14 +3,12 @@
 var _ = require('lodash');
 var Authorization = require('./authorization.model');
 
-exports.check = function(req, res) {
+exports.checkUserRelated = function(req, res) {
   return res.status(200).json({"auth": req.params.username == 'admin'});
-/*
-  Authorization.find(function (err, authorizations) {
-    if(err) { return handleError(res, err); }
-    return res.json(200, authorizations);
-  });
-*/
+};
+
+exports.checkPostRelated = function(req, res) {
+  return res.status(200).json({"auth": req.params.username != 'admin'});
 };
 
 // Get list of authorizations

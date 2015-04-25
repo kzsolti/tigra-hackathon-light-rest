@@ -16,12 +16,7 @@ describe('GET /api/authorizations', function() {
         console.info(res.body);
         res.body.auth.should.be.true;
         done();
-      })
-      /*.end(function(err, res) {
-        if (err) return done(err);
-        res.body.should.be.equalTo(true);
-        done();
-      })*/;
+      });
   });
 
   it('should not allow editing user for anyone else except admin', function(done) {
@@ -34,12 +29,31 @@ describe('GET /api/authorizations', function() {
         console.info(res.body);
         res.body.auth.should.be.false;
         done();
-      })
-      /*.end(function(err, res) {
+      });
+  });
+
+  it('should allow creating post for users with role Moderator and Author', function(done) {
+    request(app)
+      .get('/api/authorizations/username/posts/create')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end(function(err, res) {
         if (err) return done(err);
-        res.body.should.be.equalTo(true);
+        console.info(res.body);
+        res.body.auth.should.be.true;
         done();
-      })*/;
+      });
+
+    request(app)
+      .get('/api/authorizations/admin/posts/create')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end(function(err, res) {
+        if (err) return done(err);
+        console.info(res.body);
+        res.body.auth.should.be.false;
+        done();
+      });
   });
 
 /*
