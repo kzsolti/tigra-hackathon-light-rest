@@ -4,7 +4,7 @@ var _ = require('lodash');
 var Authorization = require('./authorization.model');
 
 exports.check = function(req, res) {
-  return res.json(200, true);
+  return res.status(200).json({"auth": req.params.username == 'admin'});
 /*
   Authorization.find(function (err, authorizations) {
     if(err) { return handleError(res, err); }
