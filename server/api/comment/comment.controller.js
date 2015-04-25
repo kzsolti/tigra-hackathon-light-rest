@@ -5,7 +5,7 @@ var Comment = require('./comment.model');
 
 // Get list of comments
 exports.index = function(req, res) {
-  Comment.find(function (err, comments) {
+  Comment.find({ post: req.params.postid }, function (err, comments) {
     if(err) { return handleError(res, err); }
     return res.json(200, comments);
   });
@@ -22,6 +22,8 @@ exports.show = function(req, res) {
 
 // Creates a new comment in the DB.
 exports.create = function(req, res) {
+  req.body.post = req.params.postid;
+  req.body.createdOn = new Date();
   Comment.create(req.body, function(err, comment) {
     if(err) { return handleError(res, err); }
     return res.json(201, comment);
