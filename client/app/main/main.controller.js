@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('tlogApp')
-  .controller('MainCtrl', function ($scope, $http) {
+  .controller('MainCtrl', function ($scope, $http, Post) {
     $scope.awesomeThings = [];
 
     $http.get('/api/things').success(function(awesomeThings) {
@@ -19,4 +19,10 @@ angular.module('tlogApp')
     $scope.deleteThing = function(thing) {
       $http.delete('/api/things/' + thing._id);
     };
+
+    Post.query(function (result) {
+      $scope.posts = result;
+    }, function (error) {
+      console.log(error);
+    });
   });
