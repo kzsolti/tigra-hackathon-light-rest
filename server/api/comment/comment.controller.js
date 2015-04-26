@@ -5,10 +5,12 @@ var Comment = require('./comment.model');
 
 // Get list of comments
 exports.index = function(req, res) {
-  Comment.find({ post: req.params.postid }, function (err, comments) {
-    if(err) { return handleError(res, err); }
-    return res.json(200, comments);
-  });
+  Comment.find({ post: req.params.postid })
+    .populate('author', 'name')
+    .exec(function (err, comments) {
+      if(err) { return handleError(res, err); }
+      return res.json(200, comments);
+    });
 };
 
 // Get a single comment
