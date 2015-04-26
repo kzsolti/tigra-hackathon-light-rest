@@ -1,28 +1,20 @@
 'use strict';
 
 angular.module('tlogApp')
-  .controller('MainCtrl', function ($scope, $http, Post) {
-    $scope.awesomeThings = [];
+  .controller('MainCtrl', function ($scope, Post) {
 
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
+    $scope.currentPage = 1;
+
+    Post.count(function (result) {
+      $scope.totalItems = result.postCount;
+    }, function (error) {
+      console.log(error);
     });
-
-    $scope.addThing = function() {
-      if($scope.newThing === '') {
-        return;
-      }
-      $http.post('/api/things', { name: $scope.newThing });
-      $scope.newThing = '';
-    };
-
-    $scope.deleteThing = function(thing) {
-      $http.delete('/api/things/' + thing._id);
-    };
 
     Post.query(function (result) {
       $scope.posts = result;
     }, function (error) {
       console.log(error);
     });
+
   });

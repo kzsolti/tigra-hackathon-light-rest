@@ -1,10 +1,26 @@
 <div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">Posts:</h1>
-      <ul class="nav nav-tabs nav-stacked col-md-6 col-lg-6 col-sm-12" ng-repeat="post in posts">
-        <li><a href="#">{{post.title}} - {{post.summary}}</a></li>
-      </ul>
+
+  <header class="hero-unit" id="banner">
+    <div class="container">
+      <h1>Welcome to TLog!</h1>
+      <p class="lead">Check out this awesome blogging site.</p>
     </div>
-  </div>
+  </header>
+
+  <ul class="media-list">
+    <li class="media" ng-repeat="post in posts">
+      <div class="media-body">
+        <h2 class="media-heading">{{post.title}}</h2>
+        <blockquote><p class="lead">{{post.summary}}</p></blockquote>
+        <p>{{post.createdOn | date:'yyyy.MM.dd. HH:mm'}}</p>
+        <a href="/post/{{post._id}}">Read more</a>
+      </div>
+      <hr ng-show="$index < posts.length - 1" />
+    </li>
+  </ul>
+
+  <small class="col-lg-12 text-center">posts {{(currentPage - 1) * 10}} - {{(currentPage - 1) * 10 + posts.length}} of {{totalItems}}</small>
+
+  <pager total-items="totalItems" ng-model="currentPage"></pager>
+
 </div>
