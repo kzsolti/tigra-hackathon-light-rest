@@ -5,10 +5,24 @@ var Post = require('./post.model');
 
 // Get list of posts
 exports.index = function(req, res) {
-  Post.find(function (err, posts) {
-    if(err) { return handleError(res, err); }
-    return res.json(200, posts);
-  });
+  if (req.query.count !== undefined) {
+    Post.count(function (err, count) {
+      if(err) { return handleError(res, err); }
+      return res.json(200, { postCount: count });
+    });
+  } else {
+		var query = Post.find().sort({ createdOn: 'desc' });
+    if (req.query.skip) {
+      query.skip(req.query.skip);
+    }
+    if (req.query.limit) {
+      query.limit(req.query.limit);
+    }
+    query.exec(function (err, posts) {
+      if(err) { return handleError(res, err); }
+      return res.json(200, posts);
+    });
+  }
 };
 
 // Get a single post
