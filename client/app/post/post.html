@@ -1,28 +1,33 @@
 <div class="container">
-  <h1>{{post.title}}</h1>
+
+  <h1>{{post.title}} <small class="pull-right">{{post.createdOn | date:'yyyy.MM.dd. HH:mm'}}</small></h1>
+  <p class="lead">{{post.summary}}</p>
+  <hr/>
+
   <p>{{post.content}}</p>
+  <hr/>
 
-
-  <hr>
-  <h4>Kommenteld meg jól!</h4>
-  <ng-form>
-    <div class="form-group">
-      <textarea class="form-control" ng-model="commentToPost"></textarea>
-    </div>
-    <div class="form-group">
-      <button ng-click="post_comment()">Küldés</button>
-    </div>
-  </ng-form>
-
-  <hr>
+  <h4>Discuss below <small class="pull-right">{{comments.length}} comment{{comments.length == 1 ? '' : 's'}}</small></h4>
   <div class="panel panel-default" ng-repeat="comment in comments">
     <div class="panel-heading">
-      {{comment.author}}
+      <span>{{comment.author.name}}</span>
+      <span class="pull-right">{{comment.createdOn | date:'yyyy.MM.dd. HH:mm'}}</span>
     </div>
     <div class="panel-body">
       {{comment.content}}
     </div>
   </div>
+  <hr/>
+
+  <h4>Post a comment</h4>
+  <ng-form>
+    <div class="form-group">
+      <textarea class="form-control" ng-model="commentToPost"></textarea>
+    </div>
+    <div class="form-group">
+      <button ng-click="postComment()">Post comment</button>
+    </div>
+  </ng-form>
 
 
 </div>

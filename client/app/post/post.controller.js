@@ -15,13 +15,12 @@ angular.module('tlogApp')
       Comment.query({postid: $stateParams.id}, function(result) {
         $scope.comments = result;
       });
-    }
+    };
 
     $scope.queryComments();
 
-    $scope.post_comment = function() {
-      Comment.save({postid: $stateParams.id}, {content: $scope.commentToPost, author: $scope.userId}, function(success) {
-        console.log("success");
+    $scope.postComment = function() {
+      Comment.save({postid: $stateParams.id}, {content: $scope.commentToPost, author: $scope.userId}, function() {
         $scope.queryComments();
         delete $scope.commentToPost;
       }, function(error) {
