@@ -12,10 +12,10 @@
     <div class="panel-heading">
       <span>{{comment.author.name}}</span>
       <span class="pull-right">
-        <i class="fa fa-lg fa-fw fa-edit" title="Szerkeszt"
+        <i class="fa fa-lg fa-fw fa-edit" title="Edit comment"
                 ng-show="isOwnComment(comment) && !comment.edited" ng-click="comment.edited = true"></i>
-        <i class="fa fa-lg fa-fw fa-save" title="Mentés" ng-show="comment.edited" ng-click="saveComment(comment)"></i>
-        <i class="fa fa-lg fa-fw fa-close" title="Mégse" ng-show="comment.edited" ng-click="comment.edited = false"></i>
+        <i class="fa fa-lg fa-fw fa-save" title="Save" ng-show="comment.edited" ng-click="saveComment(comment)"></i>
+        <i class="fa fa-lg fa-fw fa-close" title="Cancel" ng-show="comment.edited" ng-click="comment.edited = false"></i>
         {{comment.createdOn | date:'yyyy.MM.dd. HH:mm'}}
       </span>
     </div>

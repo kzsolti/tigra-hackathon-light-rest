@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('tlogApp')
-  .controller('PostCtrl', function ($scope, $stateParams, $http, $resource, Auth, Post, Comment) {
+  .controller('PostCtrl', function ($scope, $stateParams, Auth, Post, Comment) {
 
     $scope.postId = $stateParams.id;
     $scope.isLoggedIn = Auth.isLoggedIn;

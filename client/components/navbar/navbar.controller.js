@@ -3,8 +3,11 @@
 angular.module('tlogApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
     $scope.menu = [{
-      'title': 'Home',
-      'link': '/'
+      title: 'Home',
+      link: '/'
+    }, {
+      title: 'New post',
+      link: '/post/new'
     }];
 
     $scope.isCollapsed = true;
