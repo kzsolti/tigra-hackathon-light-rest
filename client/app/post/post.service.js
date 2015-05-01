@@ -13,5 +13,9 @@ angular.module('tlogApp')
     });
   })
   .service('Comment', function($resource) {
-    return $resource('/api/posts/:postid/comments/:id', {postid: '@postid', id: '@id'});
+    return $resource('/api/posts/:postid/comments/:id', {postid: '@postid', id: '@id'}, {
+      update: {
+        method: 'PUT'
+      }
+    });
   });
