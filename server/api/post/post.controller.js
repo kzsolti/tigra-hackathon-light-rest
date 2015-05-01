@@ -36,9 +36,6 @@ exports.show = function(req, res) {
 
 // Creates a new post in the DB.
 exports.create = function(req, res) {
-  if (!req.body.createdOn) {
-    req.body.createdOn = new Date();
-  }
   Post.create(req.body, function(err, post) {
     if(err) { return handleError(res, err); }
     return res.json(201, post);
