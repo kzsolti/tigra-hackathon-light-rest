@@ -17,17 +17,19 @@
       {{comment.content}}
     </div>
   </div>
-  <hr/>
 
-  <h4>Post a comment</h4>
-  <ng-form>
-    <div class="form-group">
-      <textarea class="form-control" ng-model="commentToPost"></textarea>
-    </div>
-    <div class="form-group">
-      <button ng-click="postComment()">Post comment</button>
-    </div>
-  </ng-form>
+  <div ng-if="isLoggedIn()">
+    <hr/>
+    <h4>Post a comment</h4>
+    <ng-form>
+      <div class="form-group">
+        <textarea class="form-control" ng-model="$parent.commentToPost"></textarea>
+      </div>
+      <div class="form-group">
+        <button ng-click="postComment()">Post comment</button>
+      </div>
+    </ng-form>
+  </div>
 
 
 </div>

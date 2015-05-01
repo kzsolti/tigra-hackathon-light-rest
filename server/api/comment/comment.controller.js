@@ -25,7 +25,6 @@ exports.show = function(req, res) {
 // Creates a new comment in the DB.
 exports.create = function(req, res) {
   req.body.post = req.params.postid;
-  req.body.createdOn = new Date();
   Comment.create(req.body, function(err, comment) {
     if(err) { return handleError(res, err); }
     return res.json(201, comment);

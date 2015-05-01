@@ -1,14 +1,13 @@
 'use strict';
 
 angular.module('tlogApp')
-  .controller('PostCtrl', function ($scope, $stateParams, $http, $resource, Post, Comment, User) {
+  .controller('PostCtrl', function ($scope, $stateParams, $http, $resource, Auth, Post, Comment) {
+
+    $scope.isLoggedIn = Auth.isLoggedIn;
+    $scope.commentToPost = undefined;
 
     Post.get({id: $stateParams.id}, function(result) {
       $scope.post = result;
-    });
-
-    User.get(function(result) {
-      $scope.userId = result._id;
     });
 
     $scope.queryComments = function() {
@@ -20,11 +19,13 @@ angular.module('tlogApp')
     $scope.queryComments();
 
     $scope.postComment = function() {
-      Comment.save({postid: $stateParams.id}, {content: $scope.commentToPost, author: $scope.userId}, function() {
-        $scope.queryComments();
-        delete $scope.commentToPost;
-      }, function(error) {
-        console.error(error);
-      });
+      Comment.save({postid: $stateParams.id}, {content: $scope.commentToPost, author: Auth.getCurrentUser()._id},
+        function() {
+          $scope.queryComments();
+          delete $scope.commentToPost;
+        }, function(error) {
+          console.error(error);
+        }
+      );
     };
   });
