@@ -4,7 +4,7 @@
   <p class="lead">{{post.summary}}</p>
   <hr/>
 
-  <p>{{post.content}}</p>
+  <div ng-bind-html="post.content"></div>
   <hr/>
 
   <h4>Discuss below <small class="pull-right">{{comments.length}} comment{{comments.length == 1 ? '' : 's'}}</small></h4>
